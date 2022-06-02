@@ -1,0 +1,50 @@
+version: '3.5'
+
+
+services:
+  newsletter:
+    image: kanz/newsletter-subscription
+    ports:
+#      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:8083:8083"
+#    volumes:
+#      - ./:/app
+#    command: ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
+#    command: ./mvnw clean package -Dmaven.test.skip=true dockerfile:build
+    networks:
+      - newsletter_network
+      - gateway_network
+
+
+
+
+#
+#services:
+#  resume_nginx:
+#    image: nginx:1.19.8-alpine
+#    ports:
+#      - "127.0.0.1:8082:8082"
+#    volumes:
+#      - nginx_logs:/var/log/nginx
+#      - ./html:/var/www/html
+#      - ./nginx-conf.d/:/etc/nginx/conf.d
+#    networks:
+#      - resume_network
+#      - gateway_network
+
+
+#volumes:
+#  nginx_logs:
+#    driver: local
+#    driver_opts:
+#      type: "none"
+#      o: "bind"
+#      device: $HOME/artifacts/resume/nginx/logs
+
+
+networks:
+  newsletter_network:
+    name: "newsletter_network"
+    driver: bridge
+  gateway_network:
+    external: true
