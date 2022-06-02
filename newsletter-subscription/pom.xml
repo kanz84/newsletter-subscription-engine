@@ -18,7 +18,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <start-class>com.kanz.newslettersubscriptionengine.newslettersubscription.NewsletterSubscriptionApplication</start-class>
-        <docker.image.prefix>kanz</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -65,7 +64,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                    <repository>${project.artifactId}</repository>
                     <buildArgs>
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>

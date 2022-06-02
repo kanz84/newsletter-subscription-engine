@@ -9,7 +9,7 @@ Please use below command in the project root directory to create docker image:
 You should know that system port is 8080 and should be free.
 
 To run newly created docker image, use below command:
->docker run  -p 8080:8080 --name newsletter -d kanz/newsletter-subscription
+>docker run  -p 8080:8080 --name newsletter -d newsletter-subscription
 
 You can use below command to see the running status of container:
 >docker ps -a
@@ -25,4 +25,4 @@ The system will show the rest methods with below url. Although this(swagger) is 
 >	url : http://localhost:8080/swagger-ui.html#/
 
 At last you can remove the container and image just with below command:
->name=$(docker ps -aqf "name=newsletter"); docker stop $name; docker rm $name; docker rmi kanz/newsletter-subscription;
+>name=$(docker ps -aqf "name=newsletter"); docker stop $name; docker rm $name; docker rmi newsletter-subscription;
