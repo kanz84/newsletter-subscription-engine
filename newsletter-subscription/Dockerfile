@@ -20,5 +20,5 @@ RUN mkdir /workspace/files/log
 
 WORKDIR /workspace/app
 COPY ${JAR_FILE} newsletter-subscription.jar
-ENTRYPOINT ["java","-jar", "-Dspring.profiles.active=pro","newsletter-subscription.jar"]
+ENTRYPOINT ["java", "-XX:+UseSerialGC", "-Xss512k", "-XX:MaxRAM=32m", "-jar", "-Dspring.profiles.active=pro","newsletter-subscription.jar"]
 #ENTRYPOINT ["./mvnw", "spring-boot:run"]

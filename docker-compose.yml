@@ -8,6 +8,15 @@ services:
       - "127.0.0.1:8083:8083"
     volumes:
       - newsletter_subscription_app_files:/workspace/files
+    deploy:
+      resources:
+        limits:
+          cpus: '0.001'
+          memory: 32M
+        reservations:
+          cpus: '0.0001'
+          memory: 16M
+
     networks:
       - newsletter_network
       - gateway_network
