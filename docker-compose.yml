@@ -3,44 +3,42 @@ version: '3.5'
 
 services:
   newsletter-subscription-app:
-#    build: newsletter-subscription
     image: newsletter-subscription
     ports:
-#      - "127.0.0.1:8000:8000"
       - "127.0.0.1:8083:8083"
-#    volumes:
-#      - ./:/app
-#    command: ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
-#    command: ./mvnw clean package -Dmaven.test.skip=true dockerfile:build
+    volumes:
+      - newsletter_subscription_app_files:/workspace/files
     networks:
       - newsletter_network
       - gateway_network
 
+  newsletter-subscription_db:
+    image: postgres:12.7
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=newsletter_subscription
+    networks:
+      - newsletter_network
 
 
-
-#
-#services:
-#  resume_nginx:
-#    image: nginx:1.19.8-alpine
-#    ports:
-#      - "127.0.0.1:8082:8082"
-#    volumes:
-#      - nginx_logs:/var/log/nginx
-#      - ./html:/var/www/html
-#      - ./nginx-conf.d/:/etc/nginx/conf.d
-#    networks:
-#      - resume_network
-#      - gateway_network
-
-
-#volumes:
-#  nginx_logs:
-#    driver: local
-#    driver_opts:
-#      type: "none"
-#      o: "bind"
-#      device: $HOME/artifacts/resume/nginx/logs
+volumes:
+  pgdata:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: $HOME/artifacts/newsletter-subscription/postgres/pgdata
+  newsletter_subscription_app_files:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: $HOME/artifacts/newsletter-subscription/app_files
 
 
 networks:

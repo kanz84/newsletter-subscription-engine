@@ -18,6 +18,7 @@ current_time=$(date "+%Y%m%d_%H%M%S")
 backup_dir=$HOME/backups/$project_name/backup_$current_time/
 
 mkdir -p "$HOME/artifacts/$project_name/app_files"
+mkdir -p "$HOME/artifacts/$project_name/postgres/pgdata"
 mkdir -p "$backup_dir"
 
 docker-compose down && docker system prune -f && docker network prune -f
