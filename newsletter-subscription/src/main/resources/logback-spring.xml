@@ -2,7 +2,7 @@
 <configuration>
 
     <property name="LOG_FILE_NAME" value="newsletter-subscription"/>
-    <property name="LOGS" value="/${java.io.tmpdir}/logs"/>
+    <property name="LOGS" value="../files/logs"/>
 
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
