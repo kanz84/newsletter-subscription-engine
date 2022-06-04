@@ -16,5 +16,8 @@ tar -pczf "$backup_dir/project.tar.gz" --exclude .git --exclude target .
 echo "Project backed up to $backup_dir"
 
 ./mvnw clean package -Dmaven.test.skip=true dockerfile:build -f newsletter-subscription
+
+echo "Hi 1"
+
 docker-compose up -d --build
 echo "Docker image built"
