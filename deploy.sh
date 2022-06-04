@@ -19,5 +19,5 @@ echo "Project backed up to $backup_dir"
 
 echo "Hi 1"
 
-docker-compose up -d --build
+docker-compose up -d --build --force-recreate
 echo "Docker image built"
