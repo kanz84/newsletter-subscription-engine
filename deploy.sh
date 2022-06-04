@@ -26,6 +26,8 @@ echo "Old docker containers removed"
 tar -pczf "$backup_dir/project.tar.gz" --exclude .git --exclude target .
 echo "Project backed up to $backup_dir"
 
+#The following line is required for first installation.
+JAVA_HOME="$JDK"  ./mvnw clean package install -Dmaven.test.skip=true
 JAVA_HOME="$JDK"  ./mvnw clean package install -Dmaven.test.skip=true dockerfile:build -f newsletter-subscription
 
 docker-compose up -d --build
