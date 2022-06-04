@@ -1,7 +1,17 @@
-FROM openjdk:11-oraclelinux7
+FROM alpine:3.14
+
+ARG JAR_FILE
+
+RUN ping 8.8.8.8 -c 1
+RUN ping google.com -c 1
+
+RUN  apk update \
+  && apk upgrade \
+  && apk add --update openjdk11 tzdata curl unzip bash
+#  && rm -rf /var/cache/apk/*
+
 #RUN adduser -S admin
 #USER admin
-ARG JAR_FILE
 
 RUN mkdir /workspace
 RUN mkdir /workspace/app
