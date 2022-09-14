@@ -1,5 +1,6 @@
 #### This manual describes the project build and deploy process.
 
+
 Please go to project root directory to build the project with below command:
 >mvn clean install
 
